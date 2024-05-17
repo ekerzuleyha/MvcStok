@@ -27,6 +27,13 @@ namespace MvcStok.Controllers
         [HttpPost]
         public ActionResult YeniKategori(TBL_KATEGORİLER p1) 
         {
+            //yeni kategori ekleme işlemi sırasında eğer modelin durumunda doğrulama işlemi yapılmadıysa, yeni kategori ekleme view ini geri döndür.
+            //doğrulanma işlemi yapılmadıysa ,doğrulama işlemi yapılmadıysa
+            if (!ModelState.IsValid) 
+            {
+                return View("YeniKategori");
+            }
+
             db.TBL_KATEGORİLER.Add(p1);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -48,10 +55,13 @@ namespace MvcStok.Controllers
 
         }
 
-        public ActionResult Güncelle(int id)
+        public ActionResult Güncelle(TBL_KATEGORİLER p1)
         {
-            var value = db.TBL_KATEGORİLER.Find();
-            return View();
+            var value = db.TBL_KATEGORİLER.Find(p1.kategoriıd);
+            value.kategoriad = p1.kategoriad;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
    
 

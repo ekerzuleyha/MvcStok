@@ -6,7 +6,7 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel.DataAnnotations;
 namespace MvcStok.Models.Entity
 {
     using System;
@@ -21,6 +21,9 @@ namespace MvcStok.Models.Entity
         }
     
         public int müsteriıd { get; set; }
+
+        [Required(ErrorMessage ="Bu alanı boş bırakamazsınız.")]
+        [StringLength(50,ErrorMessage ="En fazla 50 karakterlik isim girin.")]
         public string müsteriad { get; set; }
         public string müsterisoyad { get; set; }
     

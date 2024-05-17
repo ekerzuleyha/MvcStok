@@ -24,6 +24,7 @@ namespace MvcStok.Controllers
             //bu listeyi seç (selectlistitem)
             //seçilen listenin text değeri i den gelen ad
             //value =i nin kategori id si
+            // i de tbl kategoriden gelen değerleri ad ve id ye eşitlememizi sağlıyor
             List<SelectListItem> degerler = (from i in db.TBL_KATEGORİLER.ToList()
                                              select new SelectListItem
                                              {
@@ -56,5 +57,36 @@ namespace MvcStok.Controllers
             db.SaveChanges();
             return RedirectToAction("ÜrünListesi");
         }
+
+        public ActionResult UrunGetir(int id)
+        {
+            var value = db.TBL_URUNLER.Find(id);
+
+            List<SelectListItem> degerler = (from i in db.TBL_KATEGORİLER.ToList()
+                                             select new SelectListItem
+                                             {
+                                                 Text = i.kategoriad,
+                                                 Value = i.kategoriıd.ToString(),
+
+                                             }).ToList();
+            ViewBag.deger = degerler;
+
+            return View("UrunGetir", value);
+        }
+
+        public ActionResult Guncelle(TBL_URUNLER p1)
+        {
+            var value = db.TBL_URUNLER.Find(p1.ürünıd);
+            value.ürünadı = p1.ürünadı;
+            value.marka = p1.marka;
+            value.stok = p1.stok;
+            //value.ürünkategorisi = p1.ürünkategorisi;
+            var kategori = db.TBL_KATEGORİLER.Where(m => m.kategoriıd == p1.TBL_KATEGORİLER.kategoriıd).FirstOrDefault();
+            value.ürünkategorisi = kategori.kategoriıd;
+            value.fiyat = p1.fiyat;
+            db.SaveChanges();
+            return RedirectToAction("ÜrünListesi");
+        }
+
     }
 }

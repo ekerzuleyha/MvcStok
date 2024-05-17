@@ -11,7 +11,8 @@ namespace MvcStok.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class TBL_KATEGORİLER
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,10 +20,12 @@ namespace MvcStok.Models.Entity
         {
             this.TBL_URUNLER = new HashSet<TBL_URUNLER>();
         }
-    
+
         public short kategoriıd { get; set; }
+
+        [Required(ErrorMessage = "Kategori adını boş bırakamazsınız....")]
         public string kategoriad { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBL_URUNLER> TBL_URUNLER { get; set; }
     }
