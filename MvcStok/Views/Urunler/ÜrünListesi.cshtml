@@ -5,38 +5,61 @@
     ViewBag.Title = "ÜrünListesi";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+<br />
+@*@using (Html.BeginForm("ÜrünListesi", "Urunler", FormMethod.Get))
+    {
+        <p>
+           <b> Aranacak Kelime:</b> @Html.TextBox("a")
+            <input type="submit" value="Ara" class="btn btn-info"/>
+        </p>
 
 
-        <table class="table table-bordered">
-            <tr>
-                <th>ÜRÜN ID</th>
-                <th>ÜRÜN ADI</th>
-                <th>ÜRÜN MARKASI</th>
-                <th>ÜRÜN KATEGORİSİ</th>
-                <th>ÜRÜN FİYATI</th>
-                <th>ÜRÜN STOK ADETİ</th>
-                <th>SİL</th>
-                <th>GÜNCELLE</th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
+    }
+    <br />*@
+<table id="tbl1" class="table table-bordered">
+    <thead>
         <tr>
-            <td>@item.ürünıd</td>
-            <td>@item.ürünadı</td>
-            <td>@item.marka</td>
-            <td>@item.TBL_KATEGORİLER.kategoriad</td>
-            <td>@item.fiyat</td>
-            <td>@item.stok</td>
-            <td><a href="/Urunler/Sil/@item.ürünıd" class="btn btn-danger">SİL</a></td>
-            <td><a href="/Urunler/UrunGetir/@item.ürünıd" class="btn btn-success">GÜNCELLE</a></td>
-
+            <th>ÜRÜN ID</th>
+            <th>ÜRÜN ADI</th>
+            <th>ÜRÜN MARKASI</th>
+            <th>ÜRÜN KATEGORİSİ</th>
+            <th>ÜRÜN FİYATI</th>
+            <th>ÜRÜN STOK ADETİ</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
         </tr>
-            }
+    </thead>
+    <tbody>
 
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ürünıd</td>
+                <td>@item.ürünadı</td>
+                <td>@item.marka</td>
+                <td>@item.TBL_KATEGORİLER.kategoriad</td>
+                <td>@item.fiyat</td>
+                <td>@item.stok</td>
+                <td><a href="/Urunler/Sil/@item.ürünıd" class="btn btn-danger">SİL</a></td>
+                <td><a href="/Urunler/UrunGetir/@item.ürünıd" class="btn btn-success">GÜNCELLE</a></td>
 
+            </tr>
+        }
 
-        </table>
+    </tbody>
+
+</table>
 <a href="/Urunler/YeniÜrün/" class="btn btn-info">YENİ ÜRÜN EKLE</a>
 
-  
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+
+<link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+
+
+
+
+
+<script>
+    $('#tbl1').DataTable();
+</script>

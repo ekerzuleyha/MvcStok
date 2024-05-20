@@ -1,0 +1,50 @@
+﻿@model MvcStok.Models.Entity.TBL_SATIS
+@{
+    ViewBag.Title = "SatışListesi";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modal1">SATIŞ YAP</button>
+
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Satış Yapma Ekranı</h2>
+            </div>
+            <form method="post" action="/Satışlar/Satısyap">
+                <div class="modal-body">
+                    <label>Ürün</label>
+                    @Html.TextBoxFor(m => m.ürün, new { @class = "form-control" })
+                    @*<input type="text" name="Urun" class="form-control" />*@
+                    <br />
+                    <label>Müşteri</label>
+                    @Html.TextBoxFor(m => m.müsteri, new { @class = "form-control" })
+                    @*<input type="text" name="marka" class="form-control" />*@
+                    <br />
+                    <label>Adet</label>
+                    @Html.TextBoxFor(m => m.adet, new { @class = "form-control" })
+                    @*<input type="text" name="müşteri" class="form-control" />*@
+                    <br />
+                    <label>Fiyat</label>
+                    @Html.TextBoxFor(m => m.fiyat, new { @class = "form-control" })
+                    @*<input type="text" name="telefon" class="form-control" />*@
+                    <br />
+                    <button type="submit" class="btn btn-warning" id="btn1">Satış İşlemini Yap</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" >Vazgeç</button>
+
+                </div>
+                <script>
+                    $('#btn1').click(function () {
+                        alert('Satış İşlemi Yapıldı...');
+                    });
+
+                </script>
+            </form>
+
+        </div>
+    </div>
+</div>
+

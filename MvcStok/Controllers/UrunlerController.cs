@@ -11,8 +11,18 @@ namespace MvcStok.Controllers
     {
         MvcDbStokEntities db = new MvcDbStokEntities();
 
-        public ActionResult ÜrünListesi()
+        public ActionResult ÜrünListesi(string a)
         {
+            //var values = from c in db.TBL_URUNLER select c;
+
+            //if (!string.IsNullOrEmpty(a))
+            //{
+            //    values = values.Where(m=>m.ürünadı.Contains(a));
+            //}
+
+            //return View(values.ToList());
+
+
             var value = db.TBL_URUNLER.ToList();
             return View(value);
         }

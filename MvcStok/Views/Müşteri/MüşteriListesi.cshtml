@@ -5,8 +5,16 @@
     ViewBag.Title = "MüşteriListesi";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+<br />
 
-
+@using (Html.BeginForm("MüşteriListesi", "Müşteri", FormMethod.Get))
+{
+    <p>
+        <b> Aranacak Müşteri Adı:</b> @Html.TextBox("p")
+        <input type="submit" value="Ara" class="btn btn-info"/>
+    </p>
+}
+<br />
 <table class="table table-bordered">
     <tr>
         <th>Müşteri ID</th>
@@ -14,7 +22,8 @@
         <th>Müşteri Soyadı</th>
         <th>SİL</th>
         <th>GÜNCELLE</th>
-        
+        <th>ALERT</th>
+
     </tr>
 
     @foreach (var item in Model)
@@ -25,7 +34,9 @@
             <td>@item.müsterisoyad</td>
             <td><a href="/Müşteri/Sil/@item.müsteriıd" class="btn btn-danger">SİL</a></td>
             <td><a href="/Müşteri/MüşteriGetir/@item.müsteriıd" class="btn btn-success">GÜNCELLE</a></td>
-           
+
+            <td>@Html.ActionLink("SİL BUTONU", "Sil", new { id = item.müsteriıd }, new { @class = "btn btn-warning", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz?')" })  </td>
+
 
         </tr>
     }

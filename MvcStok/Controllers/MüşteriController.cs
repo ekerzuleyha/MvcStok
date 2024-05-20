@@ -11,10 +11,24 @@ namespace MvcStok.Controllers
     {
 
         MvcDbStokEntities db = new MvcDbStokEntities();
-        public ActionResult MüşteriListesi()
+
+        //burda bir parametre aracılığıyla değerleri gönderip kontrol edeceğiz.
+        public ActionResult MüşteriListesi(string p)
         {
-            var values = db.TBL_MUSTERİ.ToList(); 
-            return View(values);
+            // d yi müsteri tablosundan çek ve d ye ata select d d ye ata demek
+            var degerler = from d in db.TBL_MUSTERİ select d;
+
+            //string olan p boş veya null değilse bunu yap
+            if (!string.IsNullOrEmpty(p))
+            {
+                //değerlere müşteri adında p geçenleri ekle
+                degerler = degerler.Where(m => m.müsteriad.Contains(p));
+            }
+
+            return View(degerler.ToList());
+
+            //var values = db.TBL_MUSTERİ.ToList(); 
+            //return View(values);
         }
 
 
